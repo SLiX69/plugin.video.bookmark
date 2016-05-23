@@ -7,7 +7,7 @@ import simplejson as json
 from urllib import quote, unquote_plus, unquote, urlencode, quote_plus, urlretrieve
 from resources.lib._json import read_json
 
-xbmc.log('plugin.video.bookmark - init addon')
+xbmc.log('plugin.video.bookmark - init video addon')
 
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
@@ -16,7 +16,7 @@ resourcesDir = os.path.join(home, 'resources') + '/'
 fanart = ''
 view_mode_id = int('503')
 pluginhandle = int(sys.argv[1])
-loglevel = -1
+loglevel = 1
 log_msg = 'plugin.video.bookmark - '
 
 skip_root = False
@@ -33,7 +33,8 @@ def get_episodes(name):
     addon_id = name
     db_file = resourcesDir + addon_id + '.json'
     db_all = read_json(db_file)
-    addDir('back to '+addon_id, addon_id, 'to_addon', '')
+    name = get_addon_name(addon_id)
+    addDir(get_translation(30011)+' '+name, addon_id, 'to_addon', '')
     for i in db_all:
         try:
             name = db_all[i]['name']
@@ -59,7 +60,9 @@ def get_addons():
                 name = db_file[:db_file.rfind(".json")]
                 addons.append(name)
     for name in addons:
-        addDir(name, name, 'episodes', '')
+        addon_id = name  # url = addon_id
+        name = get_addon_name(addon_id)
+        addDir(name, addon_id, 'episodes', '')
 
 
 def change_addon(addon_id):
@@ -75,7 +78,7 @@ def addLink(name, url, mode, iconimage, desc, duration, addon_id, date):
     item.setInfo(type="Video", infoLabels={'Genre': ' test ', "Title": name, "Plot": desc, "Duration": duration, "Writer": addon_id, "dateadded": date})
     item.setProperty('IsPlayable', 'true')
     menu = []
-    menu.append(('Entferne Bookmark', 'XBMC.RunPlugin(%s?mode=delete)' % (sys.argv[0])))
+    menu.append((get_translation(30022), 'XBMC.RunPlugin(%s?mode=delete)' % (sys.argv[0])))
     item.addContextMenuItems(items=menu, replaceItems=False)
     item.setProperty('fanart_image', fanart)
     xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
@@ -99,6 +102,14 @@ def addDir(name, url, mode, iconimage):
     item.setInfo(type="Video", infoLabels={"Title": name})
     item.setProperty('fanart_image', fanart)
     xbmcplugin.addDirectoryItem(pluginhandle, url=u, listitem=item, isFolder=True)
+
+
+def get_translation(string_id):
+    return addon.getLocalizedString(string_id)
+
+
+def get_addon_name(addon_id):
+    return xbmcaddon.Addon(addon_id).getAddonInfo('name')
 
 
 def parameters_string_to_dict(parameters):
