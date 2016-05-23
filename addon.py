@@ -7,7 +7,7 @@ import simplejson as json
 from urllib import quote, unquote_plus, unquote, urlencode, quote_plus, urlretrieve
 from resources.lib._json import read_json
 
-xbmc.log('plugin.video.bookmarks - init addon')
+xbmc.log('plugin.video.bookmark - init addon')
 
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
@@ -16,8 +16,11 @@ resourcesDir = os.path.join(home, 'resources') + '/'
 fanart = ''
 view_mode_id = int('503')
 pluginhandle = int(sys.argv[1])
-
+loglevel = -1
 log_msg = 'plugin.video.bookmark - '
+
+skip_root = False
+if addon.getSetting('skip_root') == 'true': skip_root = True
 
 
 def root():
@@ -25,8 +28,8 @@ def root():
 
 
 def get_episodes(name):
-    xbmc.log(log_msg + '!GET EPISODES!', 1)
-    xbmc.log(log_msg + 'from addon: ' +name, 1)
+    xbmc.log(log_msg + '!GET EPISODES!', loglevel)
+    xbmc.log(log_msg + 'from addon: ' +name, loglevel)
     addon_id = name
     db_file = resourcesDir + addon_id + '.json'
     db_all = read_json(db_file)
@@ -45,10 +48,10 @@ def get_episodes(name):
 
 
 def get_addons():
-    xbmc.log(log_msg + '!GET ADDONS!', 1)
+    xbmc.log(log_msg + '!GET ADDONS!', loglevel)
     addons = []
     path = resourcesDir
-    xbmc.log(log_msg + 'path: ' + path, 1)
+    xbmc.log(log_msg + 'path: ' + path, loglevel)
     for subdir, dirs, files in os.walk(path):
         for db_file in files:
             filepath = subdir + os.sep + db_file
@@ -60,8 +63,8 @@ def get_addons():
 
 
 def change_addon(addon_id):
-    xbmc.log(log_msg + '!CHANGE ADDON!', 1)
-    xbmc.log(log_msg + 'AddonID: ' + addon_id, 1)
+    xbmc.log(log_msg + '!CHANGE ADDON!', loglevel)
+    xbmc.log(log_msg + 'AddonID: ' + addon_id, loglevel)
     xbmc.executebuiltin("ActivateWindow(10024,plugin://%s/)" % addon_id)
 
 
@@ -126,11 +129,15 @@ elif mode == 'play':
 elif mode == 'to_addon':
     change_addon(url)
 elif mode == 'delete':
-    xbmc.log(log_msg + '!DELETE!', 1)
+    xbmc.log(log_msg + '!DELETE!', loglevel)
     xbmc.executebuiltin("XBMC.RunScript(%s\context_rem.py)" % home)
     xbmc.executebuiltin("Container.Refresh")
 else:
-    root()
+    if not skip_root:
+        root()
+    else:
+        get_addons()
+
 
 
 xbmcplugin.endOfDirectory(pluginhandle)
