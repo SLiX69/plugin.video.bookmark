@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="30071">
+		<setting label="30081" type="bool" id="skip_root" default="false"/>
+	</category>
+	<category label="30072">
+		<setting label="30091" type="bool" id="auto_rem_db" default="true"/>
+	</category>
+</settings>

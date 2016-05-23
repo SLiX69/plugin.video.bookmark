@@ -41,3 +41,26 @@ msgstr ""
 msgctxt "#30051"
 msgid "Simple bookmark addon"
 msgstr ""
+
+#empty strings id 30051 - 30071
+#SETTINGS
+
+msgctxt "#30071"
+msgid "General"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Context"
+msgstr ""
+
+#empty strings id 30072 - 30081
+
+msgctxt "#30081"
+msgid "Skip inital menu (jump directly to addon)"
+msgstr ""
+
+#empty strings id 30081 - 30091
+
+msgctxt "#30091"
+msgid "Delete db when last entry is removed"
+msgstr ""
