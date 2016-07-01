@@ -6,13 +6,14 @@ import sys, os, io
 import simplejson as json
 from resources.lib._json import read_json, write_json
 
-loglevel = -1
+loglevel = 1
 xbmc.log('plugin.video.bookmark - init context rem', loglevel)
 
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
 resourcesDir = os.path.join(home, 'resources') + '/'
+userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
 path = xbmc.getInfoLabel("ListItem.Path")
 fanart = ''
 log_msg = 'plugin.video.bookmark - '
@@ -24,7 +25,7 @@ name = xbmc.getInfoLabel("ListItem.Title")
 
 
 def main():
-    db_file = resourcesDir + addon_id + '.json'
+    db_file = userdataDir + addon_id + '.json'
     delete_from_db(name, db_file)
 
 

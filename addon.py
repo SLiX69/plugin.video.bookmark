@@ -12,6 +12,7 @@ xbmc.log('plugin.video.bookmark - init video addon')
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
+userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
 resourcesDir = os.path.join(home, 'resources') + '/'
 fanart = ''
 #view_mode_id = int('503')
@@ -33,7 +34,7 @@ def get_episodes(name):
     xbmc.log(log_msg + '!GET EPISODES!', loglevel)
     xbmc.log(log_msg + 'from addon: ' +name, loglevel)
     addon_id = name
-    db_file = resourcesDir + addon_id + '.json'
+    db_file = userdataDir + addon_id + '.json'
     db_all = read_json(db_file)
     name = get_addon_name(addon_id)
     addDir(get_translation(30011)+' '+name, addon_id, 'to_addon', '')
@@ -57,7 +58,7 @@ def get_episodes(name):
 def get_addons():
     xbmc.log(log_msg + '!GET ADDONS!', loglevel)
     addons = []
-    path = resourcesDir
+    path = userdataDir
     xbmc.log(log_msg + 'path: ' + path, loglevel)
     for subdir, dirs, files in os.walk(path):
         for db_file in files:
@@ -110,6 +111,16 @@ def addDir(name, url, mode, iconimage):
     xbmcplugin.addDirectoryItem(pluginhandle, url=u, listitem=item, isFolder=True)
 
 
+def moveDB():
+    import fnmatch
+    dirs, files = xbmcvfs.listdir(resourcesDir)
+    for file in files:
+        if fnmatch.fnmatch(file, '*.json'):
+            success = xbmcvfs.copy(xbmc.translatePath(resourcesDir + file), xbmc.translatePath(userdataDir + file))
+            if success == 1:
+                delete = xbmcvfs.delete(xbmc.translatePath(resourcesDir + file))
+
+
 def get_translation(string_id):
     return addon.getLocalizedString(string_id)
 
@@ -154,7 +165,6 @@ else:
         root()
     else:
         get_addons()
-
 
 
 xbmcplugin.endOfDirectory(pluginhandle)

@@ -15,6 +15,7 @@ addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
 resourcesDir = os.path.join(home, 'resources') + '/'
+userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
 path = xbmc.getInfoLabel("ListItem.Path")
 fanart = ''
 log_msg = 'plugin.video.bookmark - '
@@ -23,7 +24,7 @@ time_now = time.strftime("%Y-%m-%d - %H:%M:%S")
 
 def main():
     addon_id = get_addon_id(path)
-    db_file = resourcesDir + addon_id + '.json'
+    db_file = userdataDir + addon_id + '.json'
     new_data = get_data_episode()
     add_to_db(new_data, db_file)
 
