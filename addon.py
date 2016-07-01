@@ -14,7 +14,7 @@ addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
 resourcesDir = os.path.join(home, 'resources') + '/'
 fanart = ''
-view_mode_id = int('503')
+#view_mode_id = int('503')
 pluginhandle = int(sys.argv[1])
 loglevel = 1
 log_msg = 'plugin.video.bookmark - '
@@ -81,7 +81,7 @@ def addLink(name, url, mode, iconimage, desc, duration, addon_id, date):
     menu.append((get_translation(30022), 'XBMC.RunPlugin(%s?mode=delete)' % (sys.argv[0])))
     item.addContextMenuItems(items=menu, replaceItems=False)
     item.setProperty('fanart_image', fanart)
-    xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
+    #xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
     xbmcplugin.addDirectoryItem(pluginhandle, url=u, listitem=item)
     xbmc.executebuiltin("Container.SetSortMethod(7)")
 
