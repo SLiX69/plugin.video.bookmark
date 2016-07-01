@@ -59,7 +59,11 @@ msgctxt "#30081"
 msgid "Skip inital menu (jump directly to addon)"
 msgstr ""
 
-#empty strings id 30081 - 30091
+msgctxt "#30082"
+msgid "Enable Fanart"
+msgstr ""
+
+#empty strings id 30083 - 30091
 
 msgctxt "#30091"
 msgid "Delete db when last entry is removed"

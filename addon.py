@@ -20,7 +20,9 @@ loglevel = 1
 log_msg = 'plugin.video.bookmark - '
 
 skip_root = False
+enab_fana = False
 if addon.getSetting('skip_root') == 'true': skip_root = True
+if addon.getSetting('enab_fana') == 'true': enab_fana = True
 
 
 def root():
@@ -43,7 +45,11 @@ def get_episodes(name):
             iconimage = db_all[i]['icon']
             duration = db_all[i]['dura']
             date_added = db_all[i]['date']
-            addLink(name, url, 'play', iconimage, plot, duration, addon_id, date_added)
+            fanart = ''
+            if enab_fana:
+                if 'fana' in db_all[i]:
+                    fanart = db_all[i]['fana']
+            addLink(name, url, 'play', iconimage, plot, duration, addon_id, date_added, fanart)
         except KeyError:
             pass
 
@@ -71,7 +77,7 @@ def change_addon(addon_id):
     xbmc.executebuiltin("ActivateWindow(10024,plugin://%s/)" % addon_id)
 
 
-def addLink(name, url, mode, iconimage, desc, duration, addon_id, date):
+def addLink(name, url, mode, iconimage, desc, duration, addon_id, date, fanart):
     u = sys.argv[0] + "?url=" + quote_plus(url) + "&mode=" + str(mode)
     ok = True
     item = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)

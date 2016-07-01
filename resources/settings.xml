@@ -2,6 +2,7 @@
 <settings>
 	<category label="30071">
 		<setting label="30081" type="bool" id="skip_root" default="false"/>
+		<setting label="30082" type="bool" id="enab_fana" default="false"/>
 	</category>
 	<category label="30072">
 		<setting label="30091" type="bool" id="auto_rem_db" default="true"/>
