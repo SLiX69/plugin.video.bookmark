@@ -3,7 +3,7 @@
 
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon, xbmcvfs
 import sys, os, io
-import simplejson as json
+import json
 from urllib import quote, unquote_plus, unquote, urlencode, quote_plus, urlretrieve
 from resources.lib._json import read_json
 
