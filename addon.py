@@ -111,7 +111,7 @@ def addDir(name, url, mode, iconimage):
     xbmcplugin.addDirectoryItem(pluginhandle, url=u, listitem=item, isFolder=True)
 
 
-def moveDB():
+def move_dbs():
     import fnmatch
     dirs, files = xbmcvfs.listdir(resourcesDir)
     for file in files:
@@ -126,7 +126,12 @@ def get_translation(string_id):
 
 
 def get_addon_name(addon_id):
-    return xbmcaddon.Addon(addon_id).getAddonInfo('name')
+    retval = 'unknown'
+    try:
+        retval = xbmcaddon.Addon(addon_id).getAddonInfo('name')
+    except RuntimeError:
+        pass
+    return retval
 
 
 def parameters_string_to_dict(parameters):
