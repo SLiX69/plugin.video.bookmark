@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon, xbmcvfs
-import sys, os, io
-import simplejson as json
+import sys
+import json
 from resources.lib._json import read_json, write_json
 
 loglevel = 1
@@ -12,7 +12,6 @@ xbmc.log('plugin.video.bookmark - init context rem', loglevel)
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
-resourcesDir = os.path.join(home, 'resources') + '/'
 userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
 path = xbmc.getInfoLabel("ListItem.Path")
 fanart = ''
@@ -37,13 +36,13 @@ def delete_from_db(name, db_file):
         if name == db_data[i]['name'].encode("utf-8"):
             del db_data[i]
             write_json(db_file, db_data)
-            break
+            break       #no need to keep searching
     else:
         xbmc.log(log_msg + 'Episode not found in data', loglevel)
     if auto_rem_db:
         if not db_data:
             xbmc.log(log_msg + 'File empty, delete it', loglevel)
-            os.remove(db_file)
+            xbmcvfs.remove(db_file)
 
 
 if __name__ == '__main__':

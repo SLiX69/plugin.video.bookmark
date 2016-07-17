@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon, xbmcvfs
-import sys, os, io, re
-import simplejson as json
+import sys, re
+import json
 import time
 import codecs
 from resources.lib._json import read_json, write_json
@@ -14,7 +14,6 @@ xbmc.log('plugin.video.bookmark - init context add')
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
 home = addon.getAddonInfo('path').decode('utf-8')
-resourcesDir = os.path.join(home, 'resources') + '/'
 userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
 path = xbmc.getInfoLabel("ListItem.Path")
 fanart = ''
@@ -52,7 +51,6 @@ def add_to_db(new_data, db_file):
 def get_addon_id(path):
     xbmc.log(log_msg + '!GET ADDON ID!', loglevel)
     xbmc.log(log_msg + 'Path: ' + path, loglevel)
-    import re
     addon_id = 'unknown'
     match = re.match(r'plugin://(.*?)\/', path)
     if match:
