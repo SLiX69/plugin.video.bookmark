@@ -11,9 +11,7 @@ xbmc.log('plugin.video.bookmark - init context rem', loglevel)
 
 addonID = "plugin.video.bookmark"
 addon = xbmcaddon.Addon(id=addonID)
-home = addon.getAddonInfo('path').decode('utf-8')
 userdataDir = xbmc.translatePath(addon.getAddonInfo('profile'))
-path = xbmc.getInfoLabel("ListItem.Path")
 fanart = ''
 log_msg = 'plugin.video.bookmark - '
 
@@ -42,7 +40,7 @@ def delete_from_db(name, db_file):
     if auto_rem_db:
         if not db_data:
             xbmc.log(log_msg + 'File empty, delete it', loglevel)
-            xbmcvfs.remove(db_file)
+            xbmcvfs.delete(db_file)
 
 
 if __name__ == '__main__':
