@@ -41,3 +41,30 @@ msgstr "Remove bookmark"
 msgctxt "#30051"
 msgid "Einfaches bookmark Addon"
 msgstr "Simple bookmark addon"
+
+#empty strings id 30051 - 30071
+#SETTINGS
+
+msgctxt "#30071"
+msgid "Allgemein"
+msgstr "General"
+
+msgctxt "#30072"
+msgid "Kontext"
+msgstr "Context"
+
+#empty strings id 30072 - 30081
+
+msgctxt "#30081"
+msgid "Springe direkt zu 'Addons'"
+msgstr "Skip inital menu (jump directly to addon)"
+
+msgctxt "#30082"
+msgid "Aktiviere Fanart"
+msgstr "Enable Fanart"
+
+#empty strings id 30083 - 30091
+
+msgctxt "#30091"
+msgid "Lösche DB wenn letzter Eintrag entfernt wurde"
+msgstr "Delete db when last entry is removed"
