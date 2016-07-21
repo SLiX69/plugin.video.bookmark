@@ -36,7 +36,11 @@ msgctxt "#30022"
 msgid "Remove bookmark"
 msgstr ""
 
-#empty strings id 30022 - 30051
+msgctxt "#30023"
+msgid "Remove addon"
+msgstr ""
+
+#empty strings id 30024 - 30051
 
 msgctxt "#30051"
 msgid "Simple bookmark addon"
@@ -67,4 +71,8 @@ msgstr ""
 
 msgctxt "#30091"
 msgid "Delete db when last entry is removed"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Do you really want to delete the addon?"
 msgstr ""

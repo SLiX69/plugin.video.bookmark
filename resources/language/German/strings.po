@@ -36,6 +36,12 @@ msgctxt "#30022"
 msgid "Lösche Bookmark"
 msgstr "Remove bookmark"
 
+msgctxt "#30023"
+msgid "Entferne Addon"
+msgstr "Remove addon"
+
+#empty strings id 30024 - 30051
+
 #empty strings id 30022 - 30051
 
 msgctxt "#30051"
@@ -68,3 +74,7 @@ msgstr "Enable Fanart"
 msgctxt "#30091"
 msgid "Lösche DB wenn letzter Eintrag entfernt wurde"
 msgstr "Delete db when last entry is removed"
+
+msgctxt "#30110"
+msgid "Willst du wirklich das gesamte Addon löschen?"
+msgstr "Do you really want to delete the addon?"
