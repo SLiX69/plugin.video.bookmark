@@ -129,6 +129,7 @@ def move_dbs():
     for file in files:
         if file.endswith('.json') and xbmcvfs.exists(xbmc.translatePath(resourcesDir + file)):  # file endswith json and exists
             db_file = xbmc.translatePath(resourcesDir + file)
+            xbmcvfs.copy(db_file, db_file + '.backup')
             new_db_file = xbmc.translatePath(userdataDir + file)
             success = xbmcvfs.copy(db_file, new_db_file)
             if success == 1 and xbmcvfs.exists(new_db_file):
