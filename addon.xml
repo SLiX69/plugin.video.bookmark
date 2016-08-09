@@ -21,7 +21,7 @@
 	<extension point="kodi.context.item" library="context_add.py">
 		<item>
 			<label>30021</label>
-			<visible>true</visible>
+			<visible>Window.IsActive(10025)+!Container.Content(Addons)</visible>
 		</item>
 	</extension>
 </addon>
