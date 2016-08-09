@@ -1,4 +1,4 @@
-import simplejson as json
+import json
 import io
 import xbmc, xbmcvfs, xbmcaddon
 
@@ -23,7 +23,6 @@ def read_json(db_file):
         xbmc.log(log_msg + 'File Not Exists', 1)
         data = {}
     return data
-
 
 
 def write_json(db_file, data):

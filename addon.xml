@@ -2,7 +2,6 @@
 <addon id="plugin.video.bookmark" name="bookmark" version="0.0.3" provider-name="SLiX">
     <requires>
 		<import addon="xbmc.python" version="2.23.0"/>
-		<import addon="script.module.simplejson" version="3.3.0"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="addon.py">
 		<provides>video</provides>
